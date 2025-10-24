@@ -50,7 +50,7 @@ export default function UserForm({ onSubmit, usuarioEditar, onCancelEdit }) {
           value={form.nombre}
           onChange={handleChange}
           placeholder="Ej. Juan Pérez"
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           required
         />
       </div>
@@ -63,7 +63,7 @@ export default function UserForm({ onSubmit, usuarioEditar, onCancelEdit }) {
           value={form.usuario}
           onChange={handleChange}
           placeholder="Ej. jperez"
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           required
         />
       </div>
@@ -76,7 +76,7 @@ export default function UserForm({ onSubmit, usuarioEditar, onCancelEdit }) {
           value={form.password}
           onChange={handleChange}
           placeholder={usuarioEditar ? 'Nueva Contraseña (opcional)' : 'Contraseña'}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           required={!usuarioEditar}
         />
       </div>
@@ -87,7 +87,7 @@ export default function UserForm({ onSubmit, usuarioEditar, onCancelEdit }) {
           name="rol"
           value={form.rol}
           onChange={handleChange}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
         >
           <option value="usuario">Usuario</option>
           <option value="administrador">Administrador</option>
@@ -97,7 +97,7 @@ export default function UserForm({ onSubmit, usuarioEditar, onCancelEdit }) {
       <div className="flex items-center gap-4">
         <button
           type="submit"
-          className="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-105"
+          className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-105"
           title={usuarioEditar ? 'Actualizar usuario existente' : 'Crear nuevo usuario'}
         >
           {usuarioEditar ? 'Actualizar' : 'Crear'}

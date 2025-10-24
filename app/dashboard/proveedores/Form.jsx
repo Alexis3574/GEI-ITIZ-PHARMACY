@@ -75,7 +75,7 @@ export default function Form({ proveedorEditar, onSave }) {
             value={form.nombre}
             onChange={handleChange}
             className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm placeholder:text-zinc-400
-                       outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-300/50
+                       outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                        dark:border-zinc-700 dark:bg-zinc-800 dark:placeholder:text-zinc-500"
           />
         </div>
@@ -90,7 +90,7 @@ export default function Form({ proveedorEditar, onSave }) {
             value={form.contacto}
             onChange={handleChange}
             className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm placeholder:text-zinc-400
-                       outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-300/50
+                       outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                        dark:border-zinc-700 dark:bg-zinc-800 dark:placeholder:text-zinc-500"
           />
           <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
@@ -104,16 +104,17 @@ export default function Form({ proveedorEditar, onSave }) {
           </label>
           <input
             name="productos"
-            placeholder="Ej. Verduras frescas, abarrotes, granos…"
+            placeholder="Ej. Farmaceúticos, Antibióticos,... "
             value={form.productos}
             onChange={handleChange}
             className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm placeholder:text-zinc-400
-                       outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-300/50
+                       outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                        dark:border-zinc-700 dark:bg-zinc-800 dark:placeholder:text-zinc-500"
           />
         </div>
       </div>
 
+      {/* Acciones */}
       <div className="mt-6 flex flex-col-reverse items-center justify-end gap-3 sm:flex-row">
         {proveedorEditar && (
           <button
@@ -128,8 +129,8 @@ export default function Form({ proveedorEditar, onSave }) {
 
         <button
           type="submit"
-          className="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition
-                     hover:brightness-105 active:scale-[.99] focus:outline-none focus:ring-2 focus:ring-emerald-300/60 sm:w-auto"
+          className="w-full rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition
+                     hover:brightness-105 active:scale-[.99] focus:outline-none focus:ring-2 focus:ring-blue-300 sm:w-auto"
         >
           {proveedorEditar ? 'Actualizar Proveedor' : 'Agregar Proveedor'}
         </button>

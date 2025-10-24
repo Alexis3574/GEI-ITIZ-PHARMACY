@@ -58,7 +58,7 @@ export default function ConfiguracionPage() {
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8 text-slate-800">
       <header>
-        <h1 className="text-3xl font-bold text-emerald-700">
+        <h1 className="text-3xl font-bold text-blue-700">
           Configuración del Sistema
         </h1>
         <p className="text-slate-600 mt-1 text-sm">
@@ -85,7 +85,7 @@ export default function ConfiguracionPage() {
 
       {session?.user?.rol === 'administrador' && (
         <section className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur">
-          <h2 className="text-2xl font-bold mb-4 text-emerald-700">
+          <h2 className="text-2xl font-bold mb-4 text-blue-700">
             Personalización de la Aplicación
           </h2>
           <Form configuracion={configuracion} onSave={handleSaveConfig} />

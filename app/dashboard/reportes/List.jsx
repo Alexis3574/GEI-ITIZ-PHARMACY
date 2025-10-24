@@ -3,8 +3,8 @@ import { useMemo, useState } from "react";
 import { generarPDFReporteLibre } from "@/lib/pdf/reportesTextoPdf";
 
 export default function List({
-  reportes = [],              
-  onEdit,                     
+  reportes = [],             
+  onEdit,                   
   onDelete,                   
 }) {
   const [q, setQ] = useState("");
@@ -89,7 +89,7 @@ export default function List({
       <div className="overflow-hidden rounded-xl border border-slate-200">
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse">
-            <thead className="sticky top-0 z-10 bg-emerald-600 text-white">
+            <thead className="sticky top-0 z-10 bg-blue-400 text-white">
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold">ID</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Tipo</th>

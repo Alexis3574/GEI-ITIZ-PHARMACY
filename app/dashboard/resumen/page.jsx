@@ -175,7 +175,8 @@ export default function Resumen() {
         <title>Resumen | Panel de Administración</title>
       </Head>
       <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-50 to-white text-slate-800">
-        <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-tr from-emerald-200/60 via-sky-200/60 to-violet-200/60 blur-3xl" />
+        {/* Radial glow background */}
+        <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-tr from-blue-300 via-sky-200/60 to-violet-200/60 blur-3xl" />
 
         <main className="mx-auto w-full max-w-7xl px-6 py-10">
           <PageHeader name={session?.user?.name} />
@@ -272,7 +273,7 @@ function PageHeader({ name, showSubtitle = true, shimmer = false }) {
   );
 }
 
-function StatCard({ title, value, accent = 'from-emerald-500 to-emerald-600', icon, delay = 0 }) {
+function StatCard({ title, value, accent = 'from-blue-500 to-blue-600', icon, delay = 0 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}

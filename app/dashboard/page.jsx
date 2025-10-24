@@ -23,7 +23,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-emerald-100 via-white to-emerald-200 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-400 via-white to-blue-400 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
       <main className="flex-grow p-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -56,7 +56,7 @@ export default function Dashboard() {
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.03 }}
-                  className="cursor-pointer rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-center text-sm font-medium shadow-sm transition hover:bg-emerald-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-700"
+                  className="cursor-pointer rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-center text-sm font-medium shadow-sm transition hover:bg-blue-100 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-700"
                 >
                   {item}
                 </motion.div>
@@ -75,7 +75,7 @@ export default function Dashboard() {
             className="md:ml-6 mt-6 md:mt-0 md:self-start"
           >
             <Image
-              src="/images/gi_itiz.png"
+              src="/images/gi-itiz1.png"
               alt="Logo"
               width={260}
               height={260}

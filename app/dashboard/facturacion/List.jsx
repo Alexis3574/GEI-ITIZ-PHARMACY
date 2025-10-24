@@ -72,7 +72,7 @@ export default function List() {
 
       <div className="overflow-auto">
         <table className="min-w-full border text-sm">
-          <thead className="bg-green-600 text-white">
+          <thead className="bg-blue-400 text-white">
             <tr>
               <th className="border p-2 text-left">ID</th>
               <th className="border p-2 text-left">Fecha</th>

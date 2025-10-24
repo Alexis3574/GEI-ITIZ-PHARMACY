@@ -33,7 +33,7 @@ export default function List({ proveedores = [], onEdit, onDelete }) {
               onChange={(e) => setQ(e.target.value)}
               placeholder="Buscar por nombre, contacto o producto…"
               className="w-full rounded-xl border border-zinc-300 bg-white px-10 py-2.5 text-sm shadow-sm outline-none transition
-                         focus:border-emerald-500 focus:ring-2 focus:ring-emerald-300/50
+                         focus:border-blue-500 focus:ring-2 focus:ring-blue-200
                          dark:border-zinc-700 dark:bg-zinc-800"
             />
             <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-zinc-400 dark:text-zinc-500">
@@ -46,7 +46,7 @@ export default function List({ proveedores = [], onEdit, onDelete }) {
       <div className="overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse">
-            <thead className="sticky top-0 z-10 bg-emerald-600 text-white dark:bg-emerald-700">
+            <thead className="sticky top-0 z-10 bg-blue-400 text-white dark:bg-blue-300">
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Nombre</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Contacto</th>
@@ -108,6 +108,7 @@ export default function List({ proveedores = [], onEdit, onDelete }) {
   );
 }
 
+/* Íconos inline (sin dependencias) */
 function SearchIcon(props) {
   return (
     <svg viewBox="0 0 24 24" className={props.className} fill="none" stroke="currentColor" strokeWidth="2">

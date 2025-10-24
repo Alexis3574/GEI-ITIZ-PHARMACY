@@ -50,7 +50,6 @@ model productos {
   detalleventas         detalleventas[]
   movimientosinventario movimientosinventario[]
 
-  // 🔹 Relación inversa
   carritoItems CarritoItem[]
 }
 
@@ -93,13 +92,11 @@ model facturas {
   tasaIvaGlobal Decimal  @default(16.00) @db.Decimal(5, 2)
   observaciones String?  @db.Text
 
-  // Totales (persistidos para listar/filtrar rápido)
   subtotal   Decimal @default(0) @db.Decimal(14, 2)
   iva        Decimal @default(0) @db.Decimal(14, 2)
   descuentos Decimal @default(0) @db.Decimal(14, 2)
   total      Decimal @default(0) @db.Decimal(14, 2)
 
-  // Datos “tipo factura” (sin timbrado)
   negocioNombre String  @db.VarChar(150)
   negocioRfc    String? @db.VarChar(13)
   negocioDir    String? @db.VarChar(250)
@@ -113,7 +110,6 @@ model facturas {
   clienteEmail  String? @db.VarChar(120)
   clienteTel    String? @db.VarChar(20)
 
-  // Relaciones
   ventas ventas?         @relation(fields: [ventaid], references: [id], onDelete: NoAction)
   items  factura_items[]
 
@@ -126,7 +122,6 @@ model facturas {
   @@index([ventaid])
 }
 
-// ---------- CONCEPTOS ----------
 model factura_items {
   id          Int     @id @default(autoincrement())
   facturaId   Int

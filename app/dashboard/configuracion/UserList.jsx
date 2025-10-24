@@ -7,7 +7,7 @@ export default function UserList({ usuarios, onDelete, onUpdateRol, onEdit }) {
 
       <div className="overflow-auto">
         <table className="min-w-full table-auto text-sm">
-          <thead className="bg-emerald-600 text-white">
+          <thead className="bg-blue-600 text-white">
             <tr>
               <th className="px-4 py-2 text-left">ID</th>
               <th className="px-4 py-2 text-left">Nombre</th>
@@ -30,7 +30,7 @@ export default function UserList({ usuarios, onDelete, onUpdateRol, onEdit }) {
                     <span
                       className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
                         u.rol === 'administrador'
-                          ? 'bg-emerald-100 text-emerald-700'
+                          ? 'bg-emerald-100 text-blue-700'
                           : 'bg-slate-100 text-slate-600'
                       }`}
                     >
@@ -40,7 +40,7 @@ export default function UserList({ usuarios, onDelete, onUpdateRol, onEdit }) {
                   <td className="px-4 py-2 space-x-3">
                     <button
                       onClick={() => onEdit(u)}
-                      className="text-sm font-medium text-emerald-600 hover:underline"
+                      className="text-sm font-medium text-blue-600 hover:underline"
                       title="Editar usuario"
                     >
                       Editar

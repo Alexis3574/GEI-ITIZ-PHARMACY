@@ -26,6 +26,7 @@ export default function CarritoModal() {
       {open && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/30 p-4">
           <div className="w-full max-w-3xl rounded-2xl bg-white p-5 shadow-xl">
+           
             <div className="mb-3 flex items-center justify-between">
               <h3 className="text-lg font-semibold">Carrito de Ventas</h3>
               <button

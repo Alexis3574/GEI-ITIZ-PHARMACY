@@ -51,7 +51,7 @@ export default function RegisterForm() {
         return setError(data.error || 'Error al registrar usuario');
       }
 
-      setExito(' Registro exitoso.');
+      setExito('✅ Registro exitoso.');
       setNombre('');
       setUsuario('');
       setPassword('');
@@ -77,7 +77,7 @@ export default function RegisterForm() {
         </div>
       )}
       {exito && (
-        <div className="mb-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-700">
+        <div className="mb-3 rounded-xl border border-blue-300 bg-emerald-50 px-4 py-2 text-sm text-blue-500">
           {exito}
         </div>
       )}
@@ -89,7 +89,7 @@ export default function RegisterForm() {
           placeholder="Ej. Juan Pérez"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           required
         />
       </div>
@@ -101,7 +101,7 @@ export default function RegisterForm() {
           placeholder="Ej. jperez"
           value={usuario}
           onChange={(e) => setUsuario(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           required
         />
       </div>
@@ -114,7 +114,7 @@ export default function RegisterForm() {
             placeholder="Mínimo 8 caracteres"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 pr-10 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 pr-10 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             required
           />
           <button
@@ -172,7 +172,7 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading ? 'Registrando…' : 'Registrarse'}
       </button>
@@ -182,7 +182,7 @@ export default function RegisterForm() {
         <button
           type="button"
           onClick={() => router.push('/login')}
-          className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+          className="text-blue-700 underline underline-offset-2 hover:text-blue-800"
         >
           Iniciar sesión
         </button>

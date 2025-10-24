@@ -13,7 +13,7 @@ export default function TicketVentas({ detalles = [] }) {
     <div className="max-w-lg mx-auto p-6 bg-white shadow rounded text-black">
       <button
         onClick={() => window.print()}
-        className="mb-4 rounded bg-emerald-600 px-4 py-2 text-white hover:brightness-110"
+        className="mb-4 rounded bg-blue-400 px-4 py-2 text-white hover:brightness-110"
       >
         Imprimir Ticket
       </button>

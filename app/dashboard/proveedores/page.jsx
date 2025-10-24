@@ -17,6 +17,7 @@ export default function ProveedoresPage() {
     }
   };
 
+  
   const kpis = useMemo(() => {
     const list = proveedores || [];
     const total = list.length;

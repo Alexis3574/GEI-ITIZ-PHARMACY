@@ -61,7 +61,7 @@ export default function List({ inventario = [], onEdit, onDelete }) {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Buscar producto, tipo, fecha…"
-              className="w-full rounded-xl border border-slate-300 bg-white px-10 py-2.5 text-sm shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+              className="w-full rounded-xl border border-slate-300 bg-white px-10 py-2.5 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             />
             <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400">
               <SearchIcon className="h-4 w-4" />
@@ -73,7 +73,7 @@ export default function List({ inventario = [], onEdit, onDelete }) {
       <div className="overflow-hidden rounded-xl border border-slate-200">
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse">
-            <thead className="sticky top-0 z-10 bg-emerald-600 text-white">
+            <thead className="sticky top-0 z-10 bg-blue-400 text-white">
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Producto</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Cantidad</th>

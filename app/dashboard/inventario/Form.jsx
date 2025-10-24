@@ -99,7 +99,7 @@ export default function Form({ itemEditar, onSave }) {
           </label>
           <div className="relative">
             <select
-              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               value={productoid}
               onChange={(e) => setProductoid(e.target.value)}
               required
@@ -121,7 +121,7 @@ export default function Form({ itemEditar, onSave }) {
           </label>
           <div className="relative">
             <select
-              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               value={tipo}
               onChange={(e) => setTipo(e.target.value)}
               required
@@ -144,7 +144,7 @@ export default function Form({ itemEditar, onSave }) {
           <input
             type="number"
             min="1"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             placeholder="Ej. 10"
             value={cantidad}
             onChange={(e) => setCantidad(e.target.value)}
@@ -158,20 +158,21 @@ export default function Form({ itemEditar, onSave }) {
           </label>
           <input
             type="text"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             placeholder="Ej. Ajuste por inventario físico"
             value={observacion}
             onChange={(e) => setObservacion(e.target.value)}
           />
         </div>
 
+     
         <div>
           <label className="mb-2 block text-sm font-medium text-slate-700">
             Fecha
           </label>
           <input
             type="date"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             value={fecha}
             onChange={(e) => setFecha(e.target.value)}
           />
@@ -198,7 +199,7 @@ export default function Form({ itemEditar, onSave }) {
 
         <button
           type="submit"
-          className="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 active:scale-[.99] sm:w-auto"
+          className="w-full rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 active:scale-[.99] sm:w-auto"
         >
           {itemEditar ? 'Actualizar Movimiento' : 'Agregar Movimiento'}
         </button>

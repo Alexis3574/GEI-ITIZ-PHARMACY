@@ -237,7 +237,7 @@ export default function Form() {
         </div>
       </section>
 
-      
+      {/* Datos de factura */}
       <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
         <h3 className="mb-3 text-lg font-semibold">Datos de factura</h3>
         <div className="grid gap-4 md:grid-cols-3">
@@ -320,6 +320,7 @@ export default function Form() {
         </div>
       </section>
 
+      {/* Totales */}
       <section className="flex flex-col justify-between gap-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm md:flex-row">
         <p className="text-sm text-slate-600">Los totales mostrados son orientativos; el backend recalcula al guardar.</p>
         <div className="space-y-1 text-right">

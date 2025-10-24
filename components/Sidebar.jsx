@@ -28,22 +28,22 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-40 w-64 transform transition-transform duration-300 ease-in-out
-      bg-gradient-to-b from-emerald-100 to-emerald-200 backdrop-blur-sm
+      bg-gradient-to-b from-blue-300 to-blue-300 backdrop-blur-sm
       md:static ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
     >
       <div className="flex items-center justify-between md:hidden px-4 py-3">
-        <h1 className="text-lg font-bold text-emerald-700">GI-ITIZ</h1>
+        <h1 className="text-lg font-bold text-black">GI-ITIZ</h1>
         <button
           onClick={() => setSidebarOpen(false)}
           aria-label="Cerrar sidebar"
-          className="rounded-lg p-1.5 text-emerald-700/80 hover:bg-emerald-100/80"
+          className="rounded-lg p-1.5 text-blue-700/80 hover:bg-emerald-100/80"
         >
           <X size={22} />
         </button>
       </div>
 
       <div className="hidden md:block px-6 py-8">
-        <h1 className="text-2xl font-extrabold tracking-tight text-emerald-700">
+        <h1 className="text-2xl font-extrabold tracking-tight text-black">
           GI-ITIZ
         </h1>
       </div>
@@ -57,8 +57,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <Link href={item.path}>
                   <span
                     className={`block cursor-pointer text-base font-semibold tracking-wide transition
-                    ${isActive ? 'text-emerald-800' : 'text-zinc-800'}
-                    hover:text-emerald-600`}
+                    ${isActive ? 'text-blue-500' : 'text-gray-600'}
+                    hover:text-blue-500`}
                   >
                     {item.name}
                   </span>

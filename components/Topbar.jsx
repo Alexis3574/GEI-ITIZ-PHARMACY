@@ -9,7 +9,7 @@ export default function Topbar({ sidebarOpen, setSidebarOpen }) {
       <div className="flex items-center gap-3">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="inline-flex items-center justify-center rounded-lg p-2 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-zinc-800 transition"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-blue-400 hover:bg-blue-50 dark:hover:bg-zinc-800 transition"
           aria-label="Abrir menú"
         >
           <Menu className="w-5 h-5" />

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 
+
 function toLocalDateString(fechaISO) {
   if (!fechaISO) return '';
   const fecha = new Date(fechaISO);
@@ -19,7 +20,7 @@ export default function Form({ productoEditar, onSave }) {
   const [fechacaducidad, setFechacaducidad] = useState('');
   const [error, setError] = useState(null);
 
-  // Formateador de moneda (solo visual)
+  
   const currency = useMemo(
     () =>
       new Intl.NumberFormat('es-MX', {
@@ -30,6 +31,7 @@ export default function Form({ productoEditar, onSave }) {
     []
   );
 
+ 
   useEffect(() => {
     if (productoEditar) {
       setNombre(productoEditar.nombre ?? '');
@@ -43,6 +45,7 @@ export default function Form({ productoEditar, onSave }) {
           : ''
       );
     } else {
+    
       setNombre('');
       setPrecio('');
       setStock('');
@@ -71,6 +74,7 @@ export default function Form({ productoEditar, onSave }) {
       fechacaducidad: fechacaducidad ? new Date(fechacaducidad) : null,
     });
 
+   
     if (!productoEditar) {
       setNombre('');
       setPrecio('');
@@ -103,6 +107,7 @@ export default function Form({ productoEditar, onSave }) {
         )}
       </div>
 
+      
       {error && (
         <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
@@ -116,8 +121,8 @@ export default function Form({ productoEditar, onSave }) {
           </label>
           <input
             type="text"
-            placeholder="Ej. Arroz integral 1kg"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            placeholder="Ej. Paracetamol, Ibuprofeno…"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
@@ -127,7 +132,7 @@ export default function Form({ productoEditar, onSave }) {
           <label className="mb-2 block text-sm font-medium text-slate-700">
             Precio (MXN) *
           </label>
-          <div className="flex items-stretch overflow-hidden rounded-xl border border-slate-300 bg-white shadow-sm focus-within:ring-2 focus-within:ring-emerald-200">
+          <div className="flex items-stretch overflow-hidden rounded-xl border border-slate-300 bg-white shadow-sm focus-within:ring-2 focus-within:ring-blue-200">
             <span className="flex items-center px-3 text-slate-500">MXN</span>
             <input
               type="number"
@@ -152,7 +157,7 @@ export default function Form({ productoEditar, onSave }) {
             type="number"
             min="0"
             placeholder="Cantidad en inventario"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             value={stock}
             onChange={(e) => setStock(e.target.value)}
           />
@@ -164,8 +169,8 @@ export default function Form({ productoEditar, onSave }) {
           </label>
           <input
             type="text"
-            placeholder="Ej. Abarrotes, Bebidas, Papelería…"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            placeholder="Ej. Antigripal, Analgésico, Antiinflamatorio…"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
           />
@@ -177,15 +182,15 @@ export default function Form({ productoEditar, onSave }) {
           </label>
           <div className="relative">
             <select
-              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               value={unidadMedida}
               onChange={(e) => setUnidadMedida(e.target.value)}
             >
               <option value="">Selecciona unidad</option>
-              <option value="unidad">Unidad</option>
-              <option value="kg">Kilogramos (kg)</option>
+              <option value="unidad">Piezas</option>
+              {/*<option value="kg">Kilogramos (kg)</option>
               <option value="lt">Litros (lt)</option>
-              <option value="m">Metros (m)</option>
+              <option value="m">Metros (m)</option>*/}
               <option value="caja">Caja</option>
               <option value="paquete">Paquete</option>
             </select>
@@ -201,7 +206,7 @@ export default function Form({ productoEditar, onSave }) {
           </label>
           <input
             type="date"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             value={fechacaducidad}
             onChange={(e) => setFechacaducidad(e.target.value)}
           />
@@ -211,11 +216,13 @@ export default function Form({ productoEditar, onSave }) {
         </div>
       </div>
 
+  
       <div className="mt-6 flex flex-col-reverse items-center justify-end gap-3 sm:flex-row">
         {productoEditar && (
           <button
             type="button"
             onClick={() => {
+           
               setNombre('');
               setPrecio('');
               setStock('');
@@ -231,7 +238,7 @@ export default function Form({ productoEditar, onSave }) {
 
         <button
           type="submit"
-          className="w-full rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 active:scale-[.99] sm:w-auto"
+          className="w-full rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 active:scale-[.99] sm:w-auto"
         >
           {productoEditar ? 'Actualizar Producto' : 'Agregar Producto'}
         </button>
@@ -239,6 +246,7 @@ export default function Form({ productoEditar, onSave }) {
     </form>
   );
 }
+
 
 function ChevronDown(props) {
   return (

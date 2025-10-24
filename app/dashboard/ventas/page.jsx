@@ -86,7 +86,7 @@ export default function VentasPage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-50 to-white text-slate-800">
-      <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-tr from-emerald-200/60 via-sky-200/60 to-violet-200/60 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-tr from-blue-200/60 via-sky-200/60 to-violet-200/60 blur-3xl" />
 
       <main className="mx-auto w-full max-w-7xl px-6 py-8">
         <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -98,10 +98,10 @@ export default function VentasPage() {
         </header>
 
         <div className="mb-6 flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-emerald-700">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm text-blue-500">
             Total: <strong>{currency.format(totalGeneral)}</strong>
           </span>
-          <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm text-sky-700">
+          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-black">
             Ítems: <strong>{items}</strong>
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">
@@ -146,7 +146,7 @@ export default function VentasPage() {
             <button
               type="button"
               disabled={(detalles?.length || 0) === 0}
-              className="inline-flex w-44 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex w-44 items-center justify-center gap-2 rounded-xl bg-blue-500 px-4 py-2.5 font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
               onClick={pagarYGenerarPDF}
             >
               Pagar

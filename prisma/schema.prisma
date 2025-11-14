@@ -9,38 +9,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Rol {
-  administrador
-  usuario
-}
-
 model usuarios {
-  id       Int       @id @default(autoincrement())
-  nombre   String?   @db.VarChar(100)
-  usuario  String    @unique @db.VarChar(100)
-  password String    @db.VarChar(255)
-  rol      Rol       @default(usuario)
-  creadoen DateTime? @default(now()) @db.Timestamp(6)
-
-  
-  carritos Carrito[]
-  configuraciones configuracion[]   
+  id              Int             @id @default(autoincrement())
+  nombre          String?         @db.VarChar(100)
+  usuario         String          @unique @db.VarChar(100)
+  password        String          @db.VarChar(255)
+  rol             Rol             @default(usuario)
+  creadoen        DateTime?       @default(now()) @db.Timestamp(6)
+  carritos        Carrito[]
+  configuraciones configuracion[]
 }
-
 
 model configuracion {
-  id         Int      @id @default(autoincrement())
-  clave      String   @db.VarChar(100)
-  valor      String?
-  usuarioid  Int?   
-
-  usuarios   usuarios? @relation(fields: [usuarioid], references: [id], onDelete: Cascade)
+  id        Int       @id @default(autoincrement())
+  clave     String    @db.VarChar(100)
+  valor     String?
+  usuarioid Int?
+  usuario   usuarios? @relation(fields: [usuarioid], references: [id], onDelete: Cascade)
 
   @@unique([clave, usuarioid], name: "clave_usuarioid")
 }
-
-
-
 
 model productos {
   id                    Int                     @id @default(autoincrement())
@@ -53,10 +41,9 @@ model productos {
   fechacaducidad        DateTime?               @db.Date
   creadoen              DateTime?               @default(now()) @db.Timestamp(6)
   unidadMedida          String?                 @db.VarChar(20)
+  carritoItems          CarritoItem[]
   detalleventas         detalleventas[]
   movimientosinventario movimientosinventario[]
-
-  carritoItems CarritoItem[]
 }
 
 model proveedores {
@@ -86,59 +73,51 @@ model detalleventas {
 }
 
 model facturas {
-  id            Int      @id @default(autoincrement())
-  ventaid       Int? // opcional (FK a ventas.id)
-  folio         String?  @unique @db.VarChar(50) // editable; único cuando no es NULL
-  serie         String?  @db.VarChar(10)
-  fecha         DateTime @default(now())
-  moneda        String   @default("MXN") @db.VarChar(10)
-  formaPago     String   @default("PUE") @db.VarChar(10) // PUE / PPD
-  metodoPago    String   @default("99") @db.VarChar(4) // 01,02,03,04,28,99...
-  usoCfdi       String   @default("P01") @db.VarChar(4)
-  tasaIvaGlobal Decimal  @default(16.00) @db.Decimal(5, 2)
-  observaciones String?  @db.Text
-
-  subtotal   Decimal @default(0) @db.Decimal(14, 2)
-  iva        Decimal @default(0) @db.Decimal(14, 2)
-  descuentos Decimal @default(0) @db.Decimal(14, 2)
-  total      Decimal @default(0) @db.Decimal(14, 2)
-
-  negocioNombre String  @db.VarChar(150)
-  negocioRfc    String? @db.VarChar(13)
-  negocioDir    String? @db.VarChar(250)
-  negocioTel    String? @db.VarChar(20)
-  negocioEmail  String? @db.VarChar(120)
-
-  clienteNombre String  @db.VarChar(150)
-  clienteRfc    String? @db.VarChar(13)
-  clienteCp     String? @db.VarChar(5)
-  clienteDir    String? @db.VarChar(250)
-  clienteEmail  String? @db.VarChar(120)
-  clienteTel    String? @db.VarChar(20)
-
-  ventas ventas?         @relation(fields: [ventaid], references: [id], onDelete: NoAction)
-  items  factura_items[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  // Si deseas evitar duplicados por serie+folio simultáneamente:
-  // @@unique([serie, folio])
+  id            Int             @id @default(autoincrement())
+  ventaid       Int?
+  folio         String?         @unique @db.VarChar(50)
+  serie         String?         @db.VarChar(10)
+  fecha         DateTime        @default(now())
+  moneda        String          @default("MXN") @db.VarChar(10)
+  formaPago     String          @default("PUE") @db.VarChar(10)
+  metodoPago    String          @default("99") @db.VarChar(4)
+  usoCfdi       String          @default("P01") @db.VarChar(4)
+  tasaIvaGlobal Decimal         @default(16.00) @db.Decimal(5, 2)
+  observaciones String?
+  subtotal      Decimal         @default(0) @db.Decimal(14, 2)
+  iva           Decimal         @default(0) @db.Decimal(14, 2)
+  descuentos    Decimal         @default(0) @db.Decimal(14, 2)
+  total         Decimal         @default(0) @db.Decimal(14, 2)
+  negocioNombre String          @db.VarChar(150)
+  negocioRfc    String?         @db.VarChar(13)
+  negocioDir    String?         @db.VarChar(250)
+  negocioTel    String?         @db.VarChar(20)
+  negocioEmail  String?         @db.VarChar(120)
+  clienteNombre String          @db.VarChar(150)
+  clienteRfc    String?         @db.VarChar(13)
+  clienteCp     String?         @db.VarChar(5)
+  clienteDir    String?         @db.VarChar(250)
+  clienteEmail  String?         @db.VarChar(120)
+  clienteTel    String?         @db.VarChar(20)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  items         factura_items[]
+  ventas        ventas?         @relation(fields: [ventaid], references: [id], onDelete: NoAction)
 
   @@index([fecha])
   @@index([ventaid])
 }
 
 model factura_items {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   facturaId   Int
-  descripcion String  @db.VarChar(250)
-  cantidad    Decimal @db.Decimal(14, 4) // fracciones soportadas
-  precio      Decimal @db.Decimal(14, 4)
-  descuento   Decimal @default(0) @db.Decimal(5, 2) // % 0–100
-  iva         Decimal @default(16) @db.Decimal(5, 2) // % 0–100
-  importe     Decimal @db.Decimal(14, 2) // baseDesc + IVA (redondeado)
-
-  factura facturas @relation(fields: [facturaId], references: [id], onDelete: Cascade)
+  descripcion String   @db.VarChar(250)
+  cantidad    Decimal  @db.Decimal(14, 4)
+  precio      Decimal  @db.Decimal(14, 4)
+  descuento   Decimal  @default(0) @db.Decimal(5, 2)
+  iva         Decimal  @default(16) @db.Decimal(5, 2)
+  importe     Decimal  @db.Decimal(14, 2)
+  factura     facturas @relation(fields: [facturaId], references: [id], onDelete: Cascade)
 
   @@index([facturaId])
 }
@@ -161,23 +140,25 @@ model reportes {
 }
 
 model Carrito {
-  id        Int      @id @default(autoincrement())
+  id        Int           @id @default(autoincrement())
   usuarioId Int
-  creadoEn  DateTime @default(now())
-  estado    String   @default("pendiente") // pendiente, confirmado, cancelado
-
-  items CarritoItem[]
-
-  usuarios usuarios @relation(fields: [usuarioId], references: [id])
+  creadoEn  DateTime      @default(now())
+  estado    String        @default("pendiente")
+  usuarios  usuarios      @relation(fields: [usuarioId], references: [id])
+  items     CarritoItem[]
 }
 
 model CarritoItem {
-  id         Int   @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   carritoId  Int
   productoId Int
   cantidad   Int
   precio     Float
+  carrito    Carrito   @relation(fields: [carritoId], references: [id])
+  producto   productos @relation(fields: [productoId], references: [id])
+}
 
-  carrito  Carrito   @relation(fields: [carritoId], references: [id])
-  producto productos @relation(fields: [productoId], references: [id])
+enum Rol {
+  administrador
+  usuario
 }

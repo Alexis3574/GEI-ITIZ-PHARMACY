@@ -38,7 +38,7 @@ function ChatbotTidio() {
 
   return (
     <Script
-      src="https://code.tidio.co/gnsiic9k412fulgjkxdmhyv5cio9boyi.js"
+      src="https://code.tidio.co/pklmmsvqx8mx05vkt4hg6iyjfkoheu0k.js"
       strategy="lazyOnload"
       onLoad={() => {
         console.log(' Tidio cargado correctamente');

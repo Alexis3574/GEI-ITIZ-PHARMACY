@@ -19,17 +19,14 @@ export default function ProductosPage() {
   const stockMinimo = 5;
   const caducidadActiva = true;
 
-  // ✅ useCallback asegura que la referencia de la función no cambie en cada render
   const cargarProductos = useCallback(() => {
     obtenerProductos();
   }, [obtenerProductos]);
 
-  // ✅ Se ejecuta solo una vez al montar
   useEffect(() => {
     cargarProductos();
   }, [cargarProductos]);
 
-  // ✅ Guardar (crear o actualizar)
   const handleSave = async (datos) => {
     try {
       if (productoEditar) {
@@ -38,14 +35,12 @@ export default function ProductosPage() {
       } else {
         await crearProducto(datos);
       }
-      // Refrescar una sola vez
       await cargarProductos();
     } catch (err) {
       console.error('❌ Error al guardar producto:', err);
     }
   };
 
-  // ✅ Eliminar producto
   const handleDelete = async (id) => {
     if (confirm('¿Estás seguro de eliminar este producto?')) {
       await eliminarProducto(id);
@@ -55,7 +50,6 @@ export default function ProductosPage() {
 
   const hoy = new Date();
 
-  // ✅ KPIs calculados con useMemo para no recalcular innecesariamente
   const kpis = useMemo(() => {
     const total = productos?.length || 0;
     const bajos = (productos || []).filter((p) => Number(p.stock) < stockMinimo).length;
@@ -75,11 +69,9 @@ export default function ProductosPage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-50 to-white text-slate-800">
-      {/* Fondo decorativo */}
       <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-tr from-emerald-200/60 via-sky-200/60 to-violet-200/60 blur-3xl" />
 
       <main className="mx-auto w-full max-w-7xl px-6 py-8">
-        {/* Header principal */}
         <header className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Gestión de Productos</h1>
@@ -110,7 +102,6 @@ export default function ProductosPage() {
           </div>
         </header>
 
-        {/* KPIs */}
         <div className="mt-4 flex flex-wrap gap-2">
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">
             <Dot className="h-3 w-3" />
@@ -129,12 +120,10 @@ export default function ProductosPage() {
           )}
         </div>
 
-        {/* Formulario */}
         <section className="mt-4 rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur">
           <Form productoEditar={productoEditar} onSave={handleSave} />
         </section>
 
-        {/* Listado */}
         <section className="mt-6 rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur">
           <List
             productos={productos}

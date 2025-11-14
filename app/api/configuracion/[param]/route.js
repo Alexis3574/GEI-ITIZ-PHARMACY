@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-import prisma from "../../../../lib/generated/prisma/client"; // Asegúrate de que este path sea correcto
+import prisma from '@/lib/prisma';
 
 export async function GET(request, { params }) {
   try {
@@ -9,7 +9,7 @@ export async function GET(request, { params }) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
-    const { param } = await params;
+    const { param } = params; 
     const usuarioid = token.id;
 
     const config = await prisma.configuracion.findUnique({
@@ -17,13 +17,19 @@ export async function GET(request, { params }) {
     });
 
     if (!config) {
-      return NextResponse.json({ error: "Configuración no encontrada" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Configuración no encontrada" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(config);
   } catch (error) {
     console.error("❌ Error en GET /configuracion/[param]:", error);
-    return NextResponse.json({ error: "Error interno del servidor" }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message || "Error interno del servidor" },
+      { status: 500 }
+    );
   }
 }
 
@@ -34,7 +40,7 @@ export async function PUT(request, { params }) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
-    const { param } = await params;
+    const { param } = params;
     const usuarioid = token.id;
     const body = await request.json();
 
@@ -47,6 +53,9 @@ export async function PUT(request, { params }) {
     return NextResponse.json(updated);
   } catch (error) {
     console.error("❌ Error en PUT /configuracion/[param]:", error);
-    return NextResponse.json({ error: "Error interno del servidor" }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message || "Error interno del servidor" },
+      { status: 500 }
+    );
   }
 }

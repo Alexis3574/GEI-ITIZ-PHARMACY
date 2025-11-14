@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "app/api/**/route.js": {
+      "includeFiles": "lib/generated/prisma/**"
+    },
+    "app/api/**/route.ts": {
+      "includeFiles": "lib/generated/prisma/**"
+    },
+    "pages/api/**/*.js": {
+      "includeFiles": "lib/generated/prisma/**"
+    },
+    "pages/api/**/*.ts": {
+      "includeFiles": "lib/generated/prisma/**"
+    }
+  }
+}

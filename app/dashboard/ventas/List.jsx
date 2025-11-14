@@ -36,7 +36,7 @@ export default function List({ data = [], onEdit, onDelete }) {
       <div className="overflow-hidden rounded-xl border border-slate-200">
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse">
-            <thead className="sticky top-0 z-10 bg-emerald-600 text-white">
+            <thead className="sticky top-0 z-10 bg-blue-600 text-white">
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Venta ID</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold">Producto</th>

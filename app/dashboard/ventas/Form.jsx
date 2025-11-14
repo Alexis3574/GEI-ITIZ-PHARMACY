@@ -141,7 +141,7 @@ export default function Form({ onSubmit, initialData = {} }) {
               value={form.productoid}
               onChange={handleChange}
               disabled={cargando}
-              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-800 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 disabled:cursor-not-allowed disabled:bg-slate-50"
+              className="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-800 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:cursor-not-allowed disabled:bg-slate-50"
             >
               <option value="">
                 {cargando ? 'Cargando productos…' : 'Selecciona un producto'}
@@ -194,14 +194,14 @@ export default function Form({ onSubmit, initialData = {} }) {
             value={form.cantidad}
             onChange={handleChange}
             placeholder="Cantidad"
-            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-800 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-800 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           />
         </div>
 
         <div className="md:col-span-8 flex items-end">
           <button
             type="submit"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-medium text-white shadow-sm transition hover:brightness-105 active:scale-[.99]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-medium text-white shadow-sm transition hover:brightness-105 active:scale-[.99]"
           >
             <Plus className="h-4 w-4 transition group-hover:scale-110" />
             {initialData.id ? 'Actualizar Venta' : 'Agregar Venta'}

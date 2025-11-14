@@ -202,7 +202,7 @@ export default function VentasPage() {
               className={`rounded-md px-4 py-2 text-white font-medium shadow-md transition ${
                 totalGeneral <= 0
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-emerald-600 hover:bg-emerald-700'
+                  : 'bg-blue-600 hover:bg-blue-700'
               }`}
             >
               {loadingPago ? 'Creando venta...' : ' Realizar Pago'}

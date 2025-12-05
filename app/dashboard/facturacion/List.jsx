@@ -1,5 +1,5 @@
 "use client";
-import useFacturas from "@/app/hooks/useFacturas";
+import useFacturas from "../../hooks/useFacturas";
 import printFactura from "./printfactura";
 
 export default function List() {

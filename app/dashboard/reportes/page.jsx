@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import ReporteForm from "../reportes/Form";
 import ReporteList from "../reportes/List";
 
@@ -8,6 +8,23 @@ export const dynamic = "force-dynamic";
 
 export default function PageReportes() {
   const [editingId, setEditingId] = useState(null);
+  const [reportes, setReportes] = useState([]);
+
+  const cargarReportes = async () => {
+    try {
+      const res = await fetch("/api/reportes", { cache: "no-store" });
+      const json = await res.json();
+
+      
+      setReportes(json.data || []);
+    } catch (error) {
+      console.error("Error cargando reportes:", error);
+    }
+  };
+
+  useEffect(() => {
+    cargarReportes();
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-slate-50 to-white text-slate-800">
@@ -27,9 +44,7 @@ export default function PageReportes() {
               type="button"
               onClick={() => setEditingId(null)}
               className="inline-flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm font-medium text-amber-700 transition hover:bg-amber-100"
-              title="Cancelar edición"
             >
-              <CancelIcon className="h-4 w-4" />
               Cancelar edición
             </button>
           )}
@@ -37,10 +52,24 @@ export default function PageReportes() {
 
         <Suspense fallback={<SkeletonGrid />}>
           <div className="grid gap-6 lg:grid-cols-2">
-            <ReporteForm editingId={editingId} onSaved={() => setEditingId(null)} />
+            
+          
+            <ReporteForm 
+              editingId={editingId} 
+              onSaved={() => {
+                setEditingId(null);
+                cargarReportes();   
+              }} 
+            />
+
+         
             <ReporteList
-              // Soporta ambos casos: si la lista manda el objeto o solo el id
-              onEdit={(itemOrId) => setEditingId(itemOrId?.id ?? itemOrId)}
+              reportes={reportes}    
+              onEdit={(item) => setEditingId(item?.id)}
+              onDelete={async (id) => {
+                await fetch(`/api/reportes/${id}`, { method: "DELETE" });
+                cargarReportes();  
+              }}
             />
           </div>
         </Suspense>
@@ -64,19 +93,5 @@ function SkeletonGrid() {
         </div>
       ))}
     </div>
-  );
-}
-
-function CancelIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={props.className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
   );
 }

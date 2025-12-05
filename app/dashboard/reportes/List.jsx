@@ -1,15 +1,22 @@
 "use client";
-import { useMemo, useState } from "react";
-import { generarPDFReporteLibre } from "@/lib/pdf/reportesTextoPdf";
 
-export default function List({
-  reportes = [],             
-  onEdit,                   
-  onDelete,                   
-}) {
+import { useMemo, useState, useEffect } from "react";
+import { generarPDFReporteLibre } from "@/lib/pdf/reportesTextoPdf";
+import useReportes from "../../hooks/useReportes";
+
+export default function List({ onEdit, onDelete }) {
+  
+  const { items, list, loading } = useReportes();
+
+  
+  useEffect(() => {
+    list(); 
+  }, [list]);
+
   const [q, setQ] = useState("");
 
-  const getFecha = (r) => r.fecha || r.createdAt || r.created_at || r.updatedAt || null;
+  const getFecha = (r) =>
+    r.fecha || r.createdAt || r.created_at || r.updatedAt || null;
 
   const fmtFecha = (d) => {
     try {
@@ -26,10 +33,11 @@ export default function List({
     }
   };
 
+  
   const rows = useMemo(() => {
     const term = q.trim().toLowerCase();
-    if (!term) return reportes;
-    return reportes.filter((r) =>
+    if (!term) return items;
+    return items.filter((r) =>
       [
         r?.tipo,
         r?.datos?.contenido,
@@ -39,7 +47,7 @@ export default function List({
         .filter(Boolean)
         .some((v) => String(v).toLowerCase().includes(term))
     );
-  }, [reportes, q]);
+  }, [items, q]);
 
   const handlePreview = (r) => {
     const doc = generarPDFReporteLibre({
@@ -68,8 +76,11 @@ export default function List({
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-xl font-semibold text-slate-900">Lista de Reportes</h2>
-          <p className="text-sm text-slate-600">Explora, exporta y gestiona tus reportes.</p>
+          <p className="text-sm text-slate-600">
+            Explora, exporta y gestiona tus reportes.
+          </p>
         </div>
+
         <div className="w-full sm:w-80">
           <div className="relative">
             <input
@@ -85,7 +96,6 @@ export default function List({
         </div>
       </div>
 
-      {/* Tabla */}
       <div className="overflow-hidden rounded-xl border border-slate-200">
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse">
@@ -100,7 +110,15 @@ export default function List({
             </thead>
 
             <tbody className="divide-y divide-slate-200 bg-white">
-              {rows.length === 0 && (
+              {loading && (
+                <tr>
+                  <td colSpan={5} className="px-4 py-10 text-center text-slate-500">
+                    Cargando reportes...
+                  </td>
+                </tr>
+              )}
+
+              {!loading && rows.length === 0 && (
                 <tr>
                   <td colSpan={5} className="px-4 py-10 text-center text-slate-500">
                     {q ? "No hay resultados para la búsqueda." : "No hay reportes guardados."}
@@ -108,65 +126,74 @@ export default function List({
                 </tr>
               )}
 
-              {rows.map((r, idx) => (
-                <tr key={r.id ?? idx} className="transition hover:bg-slate-50">
-                  <td className="px-4 py-3 text-sm text-slate-700">{r.id ?? "—"}</td>
-                  <td className="px-4 py-3 text-sm font-medium text-slate-800">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs">
-                      <DocIcon className="h-3 w-3" />
-                      {r.tipo || "—"}
-                    </span>
-                  </td>
+             {rows.map((r, idx) => (
+  <tr key={r.id ?? idx} className="transition hover:bg-slate-50">
+    
+    <td className="px-3 py-1.5 text-xs text-slate-700 leading-tight">
+      {r.id ?? "—"}
+    </td>
 
-                  <td className="px-4 py-3 text-sm text-slate-700">
-                    <span
-                      title={r?.datos?.contenido || ""}
-                      className="line-clamp-1 block max-w-[46ch] truncate"
-                    >
-                      {r?.datos?.contenido || "—"}
-                    </span>
-                  </td>
+    <td className="px-3 py-1.5 text-xs font-medium text-slate-800 leading-tight">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px]">
+        <DocIcon className="h-3 w-3" />
+        {r.tipo || "—"}
+      </span>
+    </td>
 
-                  <td className="px-4 py-3 text-sm text-slate-700">{fmtFecha(getFecha(r))}</td>
+    <td className="px-3 py-1.5 text-xs text-slate-700 leading-tight max-w-[40ch]">
+      <span
+        title={r?.datos?.contenido || ""}
+        className="block truncate"
+      >
+        {r?.datos?.contenido || "—"}
+      </span>
+    </td>
 
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <button
-                        onClick={() => handlePreview(r)}
-                        className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-sm text-slate-700 shadow-sm transition hover:bg-slate-50"
-                        title="Previsualizar PDF (no oficial)"
-                      >
-                        <EyeIcon className="h-4 w-4" />
-                        Ver
-                      </button>
-                      <button
-                        onClick={() => handleDownload(r)}
-                        className="inline-flex items-center gap-1 rounded-lg bg-sky-600 px-2.5 py-1.5 text-sm font-medium text-white shadow-sm transition hover:brightness-105"
-                        title="Descargar PDF"
-                      >
-                        <DownloadIcon className="h-4 w-4" />
-                        Descargar
-                      </button>
-                      <button
-                        onClick={() => onEdit?.(r)}
-                        className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-sm text-slate-700 shadow-sm transition hover:bg-slate-50"
-                        title="Editar"
-                      >
-                        <EditIcon className="h-4 w-4" />
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => onDelete?.(r.id)}
-                        className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-sm text-red-700 transition hover:bg-red-100"
-                        title="Eliminar"
-                      >
-                        <TrashIcon className="h-4 w-4" />
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+    <td className="px-3 py-1.5 text-xs text-slate-700 leading-tight">
+      {fmtFecha(getFecha(r))}
+    </td>
+
+    <td className="px-3 py-1.5">
+      <div className="flex flex-wrap items-center gap-1.5">
+
+        <button
+          onClick={() => handlePreview(r)}
+          className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2 py-1 text-[10px] text-slate-700 shadow-sm transition hover:bg-slate-50"
+        >
+          <EyeIcon className="h-3 w-3" />
+          Ver
+        </button>
+
+        <button
+          onClick={() => handleDownload(r)}
+          className="inline-flex items-center gap-1 rounded-md bg-sky-600 px-2 py-1 text-[10px] font-semibold text-white shadow-sm transition hover:brightness-105"
+        >
+          <DownloadIcon className="h-3 w-3" />
+          PDF
+        </button>
+
+        <button
+          onClick={() => onEdit?.(r)}
+          className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2 py-1 text-[10px] text-slate-700 shadow-sm transition hover:bg-slate-50"
+        >
+          <EditIcon className="h-3 w-3" />
+          Editar
+        </button>
+
+        <button
+          onClick={() => onDelete?.(r.id)}
+          className="inline-flex items-center gap-1 rounded-md border border-red-200 bg-red-50 px-2 py-1 text-[10px] text-red-700 transition hover:bg-red-100"
+        >
+          <TrashIcon className="h-3 w-3" />
+          Borrar
+        </button>
+
+      </div>
+    </td>
+
+  </tr>
+))}
+
             </tbody>
 
           </table>
@@ -184,6 +211,7 @@ function SearchIcon(props) {
     </svg>
   );
 }
+
 function DocIcon(props) {
   return (
     <svg viewBox="0 0 24 24" className={props.className} fill="none" stroke="currentColor" strokeWidth="2">
@@ -192,6 +220,7 @@ function DocIcon(props) {
     </svg>
   );
 }
+
 function EyeIcon(props) {
   return (
     <svg viewBox="0 0 24 24" className={props.className} fill="none" stroke="currentColor" strokeWidth="2">
@@ -200,6 +229,7 @@ function EyeIcon(props) {
     </svg>
   );
 }
+
 function DownloadIcon(props) {
   return (
     <svg viewBox="0 0 24 24" className={props.className} fill="none" stroke="currentColor" strokeWidth="2">
@@ -209,6 +239,7 @@ function DownloadIcon(props) {
     </svg>
   );
 }
+
 function EditIcon(props) {
   return (
     <svg viewBox="0 0 24 24" className={props.className} fill="none" stroke="currentColor" strokeWidth="2">
@@ -217,6 +248,7 @@ function EditIcon(props) {
     </svg>
   );
 }
+
 function TrashIcon(props) {
   return (
     <svg viewBox="0 0 24 24" className={props.className} fill="none" stroke="currentColor" strokeWidth="2">

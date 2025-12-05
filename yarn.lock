@@ -3758,10 +3758,10 @@ math-intrinsics@^1.1.0:
   resolved "https://registry.npmmirror.com/math-intrinsics/-/math-intrinsics-1.1.0.tgz#a0dd74be81e2aa5c2f27e65ce283605ee4e2b7f9"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
 
-mercadopago@^2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/mercadopago/-/mercadopago-2.10.0.tgz#86eb0b6b49d7a50092315b0ace35ae4c544f942e"
-  integrity sha512-G5wW+sxrteLwk2zipMUF9UOmJuFABI3W5KiDkb7xVt74IcHxPxHjI/81QjLMYFIYQZm7pO5L3/ieAsVvyLbmwg==
+mercadopago@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/mercadopago/-/mercadopago-2.11.0.tgz#aa36cf03b9e3984d71c53d63a9301776ddc6ec2a"
+  integrity sha512-Etv7sBwQp8ZW179W5wAGc7JFmfFOeJttQSeN1HuDrwU38YOIi+nYdKN+2KTgR9/F1S8oOGMlkVPthyIwOF5BXQ==
   dependencies:
     node-fetch "^2.7.0"
     uuid "^9.0.0"
@@ -4006,6 +4006,11 @@ node-releases@^2.0.21:
   version "2.0.23"
   resolved "https://registry.npmmirror.com/node-releases/-/node-releases-2.0.23.tgz#2ecf3d7ba571ece05c67c77e5b7b1b6fb9e18cea"
   integrity sha512-cCmFDMSm26S6tQSDpBCg/NR8NENrVPhAJSf+XbxBG4rPFaaonlEoE9wHQmun+cls499TQGSb7ZyPBRlzgKfpeg==
+
+nodemailer@^7.0.11:
+  version "7.0.11"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-7.0.11.tgz#5f7b06afaec20073cff36bea92d1c7395cc3e512"
+  integrity sha512-gnXhNRE0FNhD7wPSCGhdNh46Hs6nm+uTyg+Kq0cZukNQiYdnCsoQjodNP9BQVG9XrcK/v6/MgpAPBUFyzh9pvw==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
